@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <title>ง้อแฟน 💖</title>
+  <style>
+    body {
+      font-family: system-ui, "Noto Sans Thai", sans-serif;
+      font-size: 28px;
+      line-height: 1.6;
+      padding: 2rem;
+      text-align: center;
+      background: #fffafc;
+      color: #333;
+    }
+
+    #msg {
+      white-space: pre-line;
+    }
+
+    /* เอฟเฟกต์เฟดอิน */
+    .fade-in {
+      opacity: 0;
+      transform: scale(0.95);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .fade-in.show {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    img {
+      margin: 10px;
+      width: 250px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+
+<body>
+  <div id="msg"></div>
+
+  <!-- รูปทั้งหมด (ซ่อนไว้ก่อน) -->
+  <div id="photos" style="margin-top:20px;">
+    <img id="p1" src="fan1.jpg" class="fade-in">
+    <img id="p2" src="fan2.jpg" class="fade-in">
+    <img id="p3" src="fan3.jpg" class="fade-in">
+    <img id="p4" src="fan4.jpg" class="fade-in">
+  </div>
+
+  <script>
+    const words = ["ที่รัก", "เค้า", "ขอ", "โทษ", "นะ", "ครับ", "ที่", "เผลอหลับ", "เค้ามาง้อ", "ดีกันนะ"];
+    const el = document.getElementById('msg');
+    const imgs = [p1, p2, p3, p4];
+    let i = 0;
+
+    // พิมพ์ทีละคำ
+    (function step() {
+      if (i < words.length) {
+        el.textContent += words[i] + " ";
+        i++;
+        setTimeout(step, 600); // ปรับความเร็วพิมพ์
+      } else {
+        el.textContent += "\n(รักน้า 💗)";
+        // แสดงรูปทีละรูปพร้อม fade-in
+        let j = 0;
+        function showNext() {
+          if (j < imgs.length) {
+            imgs[j].classList.add("show");
+            j++;
+            setTimeout(showNext, 1000); // เวลาระหว่างแต่ละรูป
+          }
+        }
+        showNext();
+      }
+    })();
+  </script>
+</body>
